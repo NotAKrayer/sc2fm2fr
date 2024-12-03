@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Scrap</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="theme-color" content="#C8777F">
+    <link rel="manifest" href="manifest.webmanifest" />
+
+    <!-- iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="fr29" />
+    <link rel="apple-touch-icon" href="Images/app-icon.png" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <style>
+        @font-face {
+            font-family: "Work Sans";
+            src: url("Fonts/WorkSans-Medium.ttf");
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: "Work Sans";
+            src: url("Fonts/WorkSans-Bold.ttf");
+            font-weight: 700;
+        }
+
+        @font-face {
+            font-family: "Work Sans";
+            src: url("Fonts/WorkSans-Black.ttf");
+            font-weight: 900;
+        }
+
+        @font-face {
+            font-family: "Semibold";
+            src: url("Fonts/OpenSans-Semibold.ttf");
+            font-weight: 600;
+        }
+
+        *, html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+            text-align: center;
+        }
+
+        body {
+            background-color: black;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        canvas#gameCanvas {
+            width: auto;
+            height: 100%;
+        }
+
+        canvas.cache {
+            width: 0;
+            height: 0;
+        }
+
+        div.absolute {
+            position: absolute;
+            display: none;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+            div.absolute > * {
+                transform: translate(-50%, -50%);
+            }
+
+            div.absolute textarea {
+                position: absolute;
+                left: 50vw;
+                top: 25vh;
+                width: 75vw;
+                height: 30vh;
+                text-align: left;
+                background: linear-gradient(rgb(122, 180, 255) 0%, rgb(122, 180, 255) 49%, rgb(102, 160, 255) 51%, rgb(102, 160, 255) 100%);
+                overflow-y: scroll;
+                box-shadow: 1px 1px 0px black;
+                border: none;
+            }
+
+            div.absolute > button {
+                height: 1.5em;
+                position: absolute;
+                font-size: 2.5vh;
+                background: linear-gradient(rgb(122, 180, 255) 0%, rgb(122, 180, 255) 49%, rgb(102, 160, 255) 51%, rgb(102, 160, 255) 100%);
+                border: none;
+                box-shadow: 1px 1px 0px black;
+                padding: 0.5vh;
+            }
+
+
+
+        div.copyGift {
+            position: absolute;
+            display: none;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+            div.copyGift > * {
+                transform: translate(-50%, -50%);
+            }
+
+            div.copyGift > button {
+                height: 1.5em;
+                position: absolute;
+                font-size: 3vh;
+                background: linear-gradient(rgb(122, 180, 255) 0%, rgb(122, 180, 255) 49%, rgb(102, 160, 255) 51%, rgb(102, 160, 255) 100%);
+                border: none;
+                box-shadow: 1px 1px 0px black;
+                padding: 0.5vh;
+            }
+    </style>
+</head>
+
+<body>
+    <canvas id="gameCanvas" width="800" height="800"></canvas>
+
+    <div class="absolute">
+        <div id="myFileDiv" style="left: 70vw; top: 70vh;" type="file"></div>
+
+        <textarea value="text" id="text-area"></textarea>
+        <button id="export" style="left: 30vw; top: 50vh;">Export</button>
+        <button id="import" style="left: 70vw; top: 50vh;">Import</button>
+
+        <button id="save" onclick="saveFile()" style="left: 30vw; top: 60vh;">Export file</button>
+        <button style="left: 70vw; top: 60vh;" onclick="openFile()">Import file</button>
+
+        <button style="color: black; left: 50vw; top: 90vh; width: 85%">Select file for "Import file":</button>
+        <div style="background-color:black; color: white; margin-left: 50%; top: 85%; width: 100%; height: 10%"><input id="myFile" type="file"></div>
+
+        <button style="color: white; left: 50vw; top: 7vh; width: 85%" id="add-button">Add to home screen</button>
+        <button id="close" style="left: 50vw; top: 70vh;">Close</button>
+    </div>
+
+    <div class="copyGift">
+        <button style="left: 50vw; top: 60vh;" onclick="copyGift()">Copy Gift Code</button>
+        <button style="left: 50vw; top: 70vh;" onclick="cancelGift()" id="cancelg">Cancel Gift</button>
+        <button id="close" style="left: 50vw; top: 80vh;">Close</button>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+
+    <script src="Scripts/lang/translator.js"></script>
+    <script src="Scripts/lang/en.js"></script>
+    <script src="Scripts/lang/de.js"></script>
+    <script src="Scripts/lang/ru.js"></script>
+
+    <script src="plugins/breakinfinity.js"></script>
+    <script src="plugins/graphemesplitter.js"></script>
+    <script src="plugins/utils.js"></script>
+
+    <script src="Scripts/numberformatter.js"></script>
+    <script src="Scripts/preload.js"></script>
+    <script src="Scripts/pwa.js"></script>
+    <script src="Scripts/canvasui.js"></script>
+    <script src="Scripts/gamenotification.js"></script>
+    <script src="Scripts/upgrade.js"></script>
+    <script src="Scripts/mergequest.js"></script>
+    <script src="Scripts/milestone.js"></script>
+    <script src="Scripts/movingitems.js"></script>
+    <script src="Scripts/gamedefinition.js"></script>
+    <script src="Scripts/scene.js"></script>
+    <script src="Scripts/barrel.js"></script>
+    <script src="Scripts/effects.js"></script>
+    <script src="Scripts/main.js"></script>
+</body>
+</html>
