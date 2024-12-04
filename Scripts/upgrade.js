@@ -872,6 +872,7 @@ var EarthLevels =
     SCRAP_FACTORY: 12,
     GIFTS: 13,
     UNLOCK_NOVA: 14,
+    EWRENCH: 15,
 };
 
 var effectDisplayTemplates =

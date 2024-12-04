@@ -462,7 +462,7 @@ const trans_de = {
     wrench2: "x16 Ziegelfortschritt\nvon eigenen Verbindungen",
     wrench3: "Mehr Schrott\n(Basierend auf Schraubenschl.)",
     wrench4: "Reduziert den Stahl-Timer\num 0.25s jede eigene Verbindung",
-    wrench5: "test upgrade name",
+    wrench5: "+1x zu Schraubenschlüsselgewinn",
 
     // Shrine
     shrine1: "Schalte den Generator frei",

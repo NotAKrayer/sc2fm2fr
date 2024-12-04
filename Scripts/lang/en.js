@@ -462,7 +462,7 @@ const trans_en = {
     wrench2: "x16 brick progress\nfrom manual merges",
     wrench3: "Scrap Boost\n(Based on wrenches)",
     wrench4: "Reduce the beam timer\nby 0.25s every manual merge",
-    wrench5: "+ 1x to Wrenches gain",
+    wrench5: "+1x to Wrenches gain",
 
     // Shrine
     shrine1: "Unlock the generator building",

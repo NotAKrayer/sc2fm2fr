@@ -221,6 +221,7 @@ var images =
         funnyGlitchBeams: loadImage("Images/Upgrades/glitchbeams.png"),
         posusDarkFragments: loadImage("Images/Upgrades/posusdarkfragments.png"),
         fasterFactory: loadImage("Images/Upgrades/fasterfactory.png"),
+        xwrench: loadImage("Images/Upgrades/xwrench.png"),
     },
     scenes:
     {

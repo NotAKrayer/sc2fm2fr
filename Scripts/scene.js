@@ -2238,7 +2238,7 @@ var scenes =
                     new UIWrenchUpgrade(game.wrenches.upgrades.instantBricksChance, images.upgrades.brickBoost, 0.55, "wrench2", "table2", game.bricks.isUnlocked()),
                     new UIWrenchUpgrade(game.wrenches.upgrades.wrenchScrapBoost, images.upgrades.moreScrap, 0.65, "wrench3"),
                     new UIWrenchUpgrade(game.wrenches.upgrades.fasterBeamChance, images.upgrades.beamChance, 0.75, "wrench4", "table2", game.beams.isUnlocked()),
-                    new UIWrenchUpgrade(game.wrenches.upgrades.doubeWrenchGain, images.upgrades.beamChance, 0.85, "wrench5"),
+                    new UIWrenchUpgrade(game.wrenches.upgrades.doubeWrenchGain, images.upgrades.xwrench, 0.85, "wrench5"),
 
                 ], 0, 0.4, 1, 0.35, () => true, { ymin: 0, ymax: 1.00 }),
 

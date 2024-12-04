@@ -330,14 +330,14 @@ var game =
                 }
             ),
             earth: new GoldenScrapUpgrade(
-                level => new Decimal([1e5, 250e9, 2e12, 10e12, 50e12, 1e17, 1e24, 5e24, 7.7777e25, 1e27, 1e40, 1e100, 1e150, "1e500"][level]),
+                level => new Decimal([1e5, 250e9, 2e12, 10e12, 50e12, 1e17, 1e24, 5e24, 7.7777e25, 1e27, 1e40, 1e100, 1e150, "1e500", "1e1000"][level]),
                 level => tto({
-                    default: ["Nothing", "Buy Max", "Mars", "+20 Levels for\n3rd Magnet Upgrade", "Jupiter", "Saturn", "Uranus", "Neptune", "The Skill Tree", "+200 Levels for\n5th Brick Upgrade", "Angel Beams", "Second Dimension", "Scrap Factory", "Gifts", "the final\ntree upgrade"],
-                    de: ["Nichts", "Max. kaufen", "Mars", "+20 Level für\ndas 3. Magnetupg.", "Jupiter", "Saturn", "Uranus", "Neptun", "Upgrade-Baum", "+200 Level für\n das 5. Ziegelupgrade", "Engelstahl", "Zweite Dimension", "Fabrik", "Geschenke", "das letzte\nupgrade"],
-                    ru: ["Ничего", "Покупку по Максимуму", "Марс", "+20 Уровней для 3-го\nУлучшения Магнитов", "Юпитер", "Сатурн", "Уран", "Нептун", "Дерево Навыков", "+200 Уровней для 5-го\nУлучшения Кирпичей", "Ангельские Балки", "Второе Измерение", "Фабрику Мусора", "Подарки", "финальное улучшение дерева"]
+                    default: ["Nothing", "Buy Max", "Mars", "+20 Levels for\n3rd Magnet Upgrade", "Jupiter", "Saturn", "Uranus", "Neptune", "The Skill Tree", "+200 Levels for\n5th Brick Upgrade", "Angel Beams", "Second Dimension", "Scrap Factory", "Gifts", "the final\ntree upgrade", "Electric Wrenches"],
+                    de: ["Nichts", "Max. kaufen", "Mars", "+20 Level für\ndas 3. Magnetupg.", "Jupiter", "Saturn", "Uranus", "Neptun", "Upgrade-Baum", "+200 Level für\n das 5. Ziegelupgrade", "Engelstahl", "Zweite Dimension", "Fabrik", "Geschenke", "das letzte\nupgrade", "Elektrische\nSchraubenschlüssel"],
+                    ru: ["Ничего", "Покупку по Максимуму", "Марс", "+20 Уровней для 3-го\nУлучшения Магнитов", "Юпитер", "Сатурн", "Уран", "Нептун", "Дерево Навыков", "+200 Уровней для 5-го\nУлучшения Кирпичей", "Ангельские Балки", "Второе Измерение", "Фабрику Мусора", "Подарки", "Последнее улучшение\nдерева прокачки", "Электрические\nключи"]
                 })[level],
                 {
-                    maxLevel: 14,
+                    maxLevel: 15,
                     getEffectDisplay: function () {
                         if (this.level === this.maxLevel) {
                             return tt("Unlocked everything!");
@@ -2659,8 +2659,8 @@ var game =
                 new Milestone(221, "Duck Tales", 115, () => "Do at least 100k merges on all\nduck barrels (Progress: " + duckTales(1) + "/" + duckBarrels.length + ")\n" + duckTales(2), () => duckTales(), ["<text>", "duckTales(1)"]),
                 new Milestone(228, "Nuclear Fusion", 65, "Do 1M manual merges\n(Merges from auto merge do not count as manual merges)\nor 100M total merges", () => game.selfMerges >= 1e6 || game.totalMerges >= 1e8),
                 new Milestone(274, "Mastery of Mastery", 92, () => "Get ALL barrels to Mastery 10", () => getTotalLevels(10) >= BARRELS),
-                new Milestone(250, "The End?", 0, () => "Get Almost All Achievements", () => game.ms.length >= game.milestones.achievements.length - 1),
-                //new Milestone(166, "", 50, "", () => ),
+                new Milestone(250, "The End?", 0, () => "Get Almost All Achievements", () => game.ms.length >= 274),
+                new Milestone(276, "Just the beginning", 120, () => "Unlock Electric Wrenches!", () => game.solarSystem.upgrades.earth.level >= EarthLevels.EWRENCH),
             ],
         highlighted: 0,
         tooltip: null,
