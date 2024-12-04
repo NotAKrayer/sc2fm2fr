@@ -84,7 +84,7 @@ const trans_de = {
     "cp2": "Mod von VeproGames Scrap 2 Fanmade ©2019",
     "cp3": "Mod SC2FMFR gemacht von Schrottii ©2021",
     "cp4": "Das modden dieser Mod ohne Erlaubnis ist untersagt!",
-    "cp4.5": " Mod SC2FM^2FR gemacht von KirillMatter (Krayer) mit Schrotti-Auflösung",
+    "cp4.5": " Mod SC2FM^2FR gemacht von KirillMatter",
     "credit": "Danke an alle Tonnenersteller, Vorschlägemacher,\nFehlerfinder, Betatester und wer auch immer\ndie Kokosnuss gemacht hat",
     "thanks": "Besonderen Dank an elmenda452, DaGame,\nЛюбитель Майнкрафта, DoorHandleSalesMan und MCGamer3005",
     "Libraries used": "Libraries benutzt",
@@ -96,6 +96,7 @@ const trans_de = {
     "scrapserver": "Scrap Server",
     "mydc": "Discord",
     "myyt": "Youtube",
+    "dts": "donate für Schrottii",
 
     // SAVE CODE
     "export": "Export",

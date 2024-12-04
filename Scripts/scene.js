@@ -2238,7 +2238,7 @@ var scenes =
                     new UIWrenchUpgrade(game.wrenches.upgrades.instantBricksChance, images.upgrades.brickBoost, 0.55, "wrench2", "table2", game.bricks.isUnlocked()),
                     new UIWrenchUpgrade(game.wrenches.upgrades.wrenchScrapBoost, images.upgrades.moreScrap, 0.65, "wrench3"),
                     new UIWrenchUpgrade(game.wrenches.upgrades.fasterBeamChance, images.upgrades.beamChance, 0.75, "wrench4", "table2", game.beams.isUnlocked()),
-                    new UIWrenchUpgrade(game.wrenches.upgrades.fasterBeamChance, images.upgrades.beamChance, 0.85, "wrench5", "table2", game.beams.isUnlocked()),
+                    new UIWrenchUpgrade(game.wrenches.upgrades.doubeWrenchGain, images.upgrades.beamChance, 0.85, "wrench5"),
 
                 ], 0, 0.4, 1, 0.35, () => true, { ymin: 0, ymax: 1.00 }),
 
@@ -2590,7 +2590,7 @@ var scenes =
                         "\n" + tt("cp3"), 0.5, tabYs[3] + 0.1, 0.035, "white"),
                     new UIText(() => tt("cp4") + "\n" + tt("cp4.5"), 0.5, tabYs[3] + 0.2, 0.035, "white"),
 
-                    new UIImage(images.scenes.creditsformod, 0.5, tabYs[3] + 0.32, 0.3, 0.1, { quadratic: false }),
+                    new UIImage(images.scenes.creditsformod, 0.5, tabYs[3] + 0.32, 0.7, 0.13, { quadratic: false }),
 
                     new UIText(() => tt("credit"), 0.5, tabYs[3] + 0.4, 0.035, "white"),
                     new UIText(() => tt("thanks"), 0.5, tabYs[3] + 0.5, 0.035, "white"),
@@ -2598,14 +2598,14 @@ var scenes =
 
                     new UIText(() => tt("Libraries used") + ":\nbreak_infinity\ngrapheme-splitter", 0.5, tabYs[3] + 0.7, 0.04, "white"),
 
-                    new UIButton(0.1, tabYs[3] + 0.7, 0.05, 0.05, images.logos.discord, () => location.href = "https://discord.gg/CbBeJXKUrk", { quadratic: true }),
+                    new UIButton(0.1, tabYs[3] + 0.8, 0.05, 0.05, images.logos.discord, () => location.href = "https://discord.gg/CbBeJXKUrk", { quadratic: true }),
                     new UIText(() => tt("myserver"), 0.18, tabYs[3] + 0.8, 0.045, "black", { halign: "left", valign: "middle" }),
-                    new UIButton(0.1, tabYs[3] + 0.8, 0.05, 0.05, images.logos.discord, () => location.href = "https://discord.gg/KgK3AgMfaC", { quadratic: true }),
+                    new UIButton(0.1, tabYs[3] + 0.9, 0.05, 0.05, images.logos.discord, () => location.href = "https://discord.gg/KgK3AgMfaC", { quadratic: true }),
                     new UIText(() => tt("fmserver"), 0.18, tabYs[3] + 0.9, 0.045, "black", { halign: "left", valign: "middle" }),
-                    new UIButton(0.1, tabYs[3] + 0.9, 0.05, 0.05, images.logos.discord, () => location.href = "https://discord.gg/HPDxES9", { quadratic: true }),
+                    new UIButton(0.1, tabYs[3] + 1.0, 0.05, 0.05, images.logos.discord, () => location.href = "https://discord.gg/HPDxES9", { quadratic: true }),
                     new UIText(() => tt("scrapserver"), 0.18, tabYs[3] + 1.0, 0.045, "black", { halign: "left", valign: "middle" }),
 
-                    new UIOption(tabYs[3] + 1, images.buttonReset, () => {
+                    new UIOption(tabYs[3] + 1.1, images.buttonReset, () => {
                         if (confirm(tt("HR1"))) {
                             if (confirm(tt("HR2"))) {
                                 if (confirm(tt("HR3"))) {
@@ -2630,6 +2630,8 @@ var scenes =
                 new UIButton(0.5, 0.925, 0.2, 0.1, images.logos.donate, () => {
                     location.href = "https://ko-fi.com/schrottii";
                 }, { quadratic: true }),
+
+                new UIText(() => tt("dts"), 0.5, 0.99, 0.045, "black", { valign: "middle" }),
 
                 // DC & YT
                 new UIButton(0.05, 0.89, 0.05, 0.05, images.logos.discord, () => location.href = "https://discord.gg/CbBeJXKUrk", { quadratic: true }),

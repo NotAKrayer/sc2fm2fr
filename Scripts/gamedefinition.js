@@ -1198,11 +1198,11 @@ var game =
                     getEffectDisplay: effectDisplayTemplates.numberStandard(0, "", "% Chance")
                 }),
             doubeWrenchGain: new WrenchUpgrade(
-                level => new Decimal(10 * (1 + Math.round(level / 2))),
-                level => 0.5 * level,
+                level => new Decimal(1e4 * (1 + level / 2)),
+                level => level + 1 * 1,
                 {
-                    maxLevel: 200,
-                    getEffectDisplay: effectDisplayTemplates.numberStandard(2, "", "% Chance")
+                    maxLevel: 9,
+                    getEffectDisplay: effectDisplayTemplates.numberStandard(2, "x")
                 }),
         }
     },
@@ -2659,7 +2659,7 @@ var game =
                 new Milestone(221, "Duck Tales", 115, () => "Do at least 100k merges on all\nduck barrels (Progress: " + duckTales(1) + "/" + duckBarrels.length + ")\n" + duckTales(2), () => duckTales(), ["<text>", "duckTales(1)"]),
                 new Milestone(228, "Nuclear Fusion", 65, "Do 1M manual merges\n(Merges from auto merge do not count as manual merges)\nor 100M total merges", () => game.selfMerges >= 1e6 || game.totalMerges >= 1e8),
                 new Milestone(274, "Mastery of Mastery", 92, () => "Get ALL barrels to Mastery 10", () => getTotalLevels(10) >= BARRELS),
-                new Milestone(250, "The End", 0, () => "Get All Achievements", () => game.ms.length >= game.milestones.achievements.length - 1),
+                new Milestone(250, "The End?", 0, () => "Get Almost All Achievements", () => game.ms.length >= game.milestones.achievements.length - 1),
                 //new Milestone(166, "", 50, "", () => ),
             ],
         highlighted: 0,

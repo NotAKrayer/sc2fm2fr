@@ -979,12 +979,12 @@ function onBarrelMerge(isAuto, lvl, bx, by) {
 
         if (game.wrenches.isUnlocked()) {
             if (isMobile()) {
-                game.wrenches.amount = game.wrenches.amount.add(Decimal.mul(1, 2));
-                game.stats.totalwrenches = game.stats.totalwrenches.add(Decimal.mul(1, 2));
+                game.wrenches.amount = game.wrenches.amount.add(1 * applyUpgrade(game.wrenches.upgrades.doubeWrenchGain));
+                game.stats.totalwrenches = game.stats.totalwrenches.add(1 * applyUpgrade(game.wrenches.upgrades.doubeWrenchGain));
             }
             else {
-                game.wrenches.amount = game.wrenches.amount.add(Decimal.mul(3, 2));
-                game.stats.totalwrenches = game.stats.totalwrenches.add(Decimal.mul(3, 2));
+                game.wrenches.amount = game.wrenches.amount.add(3 * applyUpgrade(game.wrenches.upgrades.doubeWrenchGain));
+                game.stats.totalwrenches = game.stats.totalwrenches.add(3 * applyUpgrade(game.wrenches.upgrades.doubeWrenchGain));
             }
 
             // Double Mastery

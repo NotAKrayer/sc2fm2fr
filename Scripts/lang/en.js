@@ -84,7 +84,7 @@ const trans_en = {
     "cp2": "Mod of VeproGames' Scrap 2 Fanmade ©2019",
     "cp3": "Mod SC2FMFR created by Schrottii ©2021",
     "cp4": "Unauthorized mods of this mod are prohibited!",
-    "cp4.5": " Mod SC2FM^2FR created by KirillMatter (Krayer) with Schrottii Permission",
+    "cp4.5": " Mod SC2FM^2FR created by KirillMatter",
     "credit": "Credit to all barrel makers, idea givers, bug finders,\nbeta testers and whoever made the coconut image",
     "thanks": "Special thanks to elmenda452, DaGame,\nЛюбитель Майнкрафта, DoorHandleSalesMan\nand MCGamer3005",
     "Libraries used": "Libraries used",
@@ -97,6 +97,7 @@ const trans_en = {
     "mydc": "Discord",
     "myyt": "Youtube",
     "myw": "My Other Games",
+    "dts": "to Schrottii",
 
     // SAVE CODE
     "export": "Export",
@@ -461,7 +462,7 @@ const trans_en = {
     wrench2: "x16 brick progress\nfrom manual merges",
     wrench3: "Scrap Boost\n(Based on wrenches)",
     wrench4: "Reduce the beam timer\nby 0.25s every manual merge",
-    wrench5: "test upgrade name",
+    wrench5: "+ 1x to Wrenches gain",
 
     // Shrine
     shrine1: "Unlock the generator building",

@@ -84,7 +84,7 @@ const trans_ru = {
     "cp2": "Мод на Scrap 2 Fanmade от VeproGames ©2019",
     "cp3": " Мод SC2FMFR создан Schrottii ©2021",
     "cp4": "Неавторизованные моды этого мода запрещены!",
-    "cp4.5": " Мод SC2FM^2FR создан KirillMatter (Krayer) с разрешением Schrottii",
+    "cp4.5": " Мод SC2FM^2FR создан KirillMatter",
     "credit": "Отдельное спасибо всем создателям бочек,\nподателям идей, находчикам багов, бета-тестировщикам\nи тому, кто создал картинку кокоса",
     "thanks": "Особая благодарность elmenda452, DaGame,\nЛюбитель Майнкрафта, DoorHandleSalesMan\nи MCGamer3005",
     "Libraries used": "Использованные библиотеки",
@@ -96,6 +96,7 @@ const trans_ru = {
     "scrapserver": "Мусора Discord-Сервер",
     "mydc": "Discord",
     "myyt": "Youtube",
+    "dts": "Задонать Schrottii",
 
     // SAVE CODE
     "export": "Экспорт",
