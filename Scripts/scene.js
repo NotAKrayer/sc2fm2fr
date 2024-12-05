@@ -1188,7 +1188,7 @@ var scenes =
                     quadratic: true,
                     isVisible: () => game.solarSystem.upgrades.neptune.level > 4,
                 }),
-                new UIButton(0.9, 0.9, 0.07, 0.07, images.scenes.ewrench, () => Scene.loadScene("EWrench"), {
+                new UIButton(0.7, 0.9, 0.07, 0.07, images.scenes.ewrench, () => Scene.loadScene("EWrench"), {
                     quadratic: true,
                     isVisible: () => game.ewrench.isUnlocked()
                 }),
