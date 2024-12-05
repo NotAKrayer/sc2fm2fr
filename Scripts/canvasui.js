@@ -603,6 +603,11 @@ class UIWrenchUpgrade extends UIUpgrade {
         super(upg, img, "$images.wrench$", y, desc, 0.05, col, isVisible, true, true);
     }
 }
+class UIEWrenchUpgrade extends UIUpgrade {
+    constructor(upg, img, y, desc, col, isVisible) {
+        super(upg, img, "$images.ewrench$", y, desc, 0.05, col, isVisible, true, true);
+    }
+}
 class UIAngelBeamUpgrade extends UIUpgrade {
     constructor(upg, img, y, desc, col, isVisible) {
         super(upg, img, "$images.angelbeam$", y, desc, 0.05, col, isVisible, true, true);
@@ -641,6 +646,11 @@ class UIAutoUpgrade extends UIUpgrade3 {
 class UIMasteryUpgrade extends UIUpgrade {
     constructor(upg, img, y, desc, col, isVisible) {
         super(upg, img, "$images.masteryToken$", y, desc, 0.05, col, isVisible, true, true);
+    }
+}
+class UIDarkMasteryUpgrade extends UIUpgrade {
+    constructor(upg, img, y, desc, col, isVisible) {
+        super(upg, img, "$images.darkToken$", y, desc, 0.05, col, isVisible, true, true);
     }
 }
 class UICogwheelUpgrade extends UIUpgrade {

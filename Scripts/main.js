@@ -74,6 +74,7 @@ let shortV = {
     "totalaliendust": "cad",
     "totalfairydust": "cfd",
     "totalcosmicemblems": "cem",
+    "totalewrench": "ewr",
 }
 
 var spawnTime =
@@ -781,6 +782,7 @@ function hardReset() {
     game.supernova.reset("norew");
 
     game.wrenches.amount = new Decimal(0);
+    game.ewrench.amount = new Decimal(0);
     for (u in game.wrenches.upgrades) {
         game.wrenches.upgrades[u].level = 0;
     }
@@ -793,6 +795,12 @@ function hardReset() {
     game.barrelMastery.bl = Array(1000).fill(0);
     game.barrelMastery.levels = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,];
     game.barrelMastery.masteryTokens = new Decimal(0);
+
+    game.darkMastery.darkTokens = new Decimal(0);
+    game.darkMastery.d = Array(1000).fill(0);
+    game.darkMastery.dl = Array(1000).fill(0);
+    game.darkMastery.levels = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,];
+    game.darkMastery.darkTokens = new Decimal(0);
 
     game.cogwheels.amount = new Decimal(0);
     for (u in game.cogwheels.upgrades) {
@@ -821,6 +829,7 @@ function hardReset() {
     }
 
     game.barrelMastery.masteryTokens = new Decimal(0);
+    game.darkMastery.darkTokens = new Decimal(0);
     game.mergeQuests.scrapyard = 0;
 
     game.highestMasteryLevel = 0;
@@ -886,11 +895,24 @@ function renewableEnergy() {
 
 var masMerges = [100, 250, 500, 1000, 2500,
     5000, 7500, 10000, 15000, 20000, 25000];
+var darkMerges = [100, 250, 500, 1000, 2500,
+        5000, 7500, 10000, 15000, 20000, 25000];
 // 100, 125, 166, 250, 500, 833, 1071, 1250, 1666, 2000, 2272(, 4166, 5796, 7142, ...)
 
 const filthyWords = ["ass", "cum", "shit", "fuck", "bitch", "hitler", "cunt", "poop", "faggot", "nigger", "nigga", "slave", "cock", "dick", "sex", "penis", "vagina", "retard", "blowjob", "pussy", "tits", "nazi", "fag", "tranny", "shemale", "heshe", "trap", "transvestite"]
 
 function calculateMasteryLevel(merges) {
+    if (merges < 25001) {
+        let id = 0;
+        while (merges >= masMerges[id]) {
+            id += 1;
+        }
+        return id;
+    }
+    return Math.floor(merges / (25000)) + 10;
+}
+
+function calculateDarkMasteryLevel(merges) {
     if (merges < 25001) {
         let id = 0;
         while (merges >= masMerges[id]) {
@@ -909,8 +931,20 @@ function calculateTotalLevels(level) {
     return Math.min(BARRELS, am);
 }
 
+function calculateTotalLevelsDark(level) {
+    let am = 0;
+    for (mb in game.darkMastery.dl) {
+        if (game.darkMastery.dl[mb] >= level) am += 1;
+    }
+    return Math.min(BARRELS, am);
+}
+
 function getTotalLevels(level) {
     return game.barrelMastery.levels[level - 1];
+}
+
+function getTotalLevelsDark(level) {
+    return game.darkMastery.levels[level - 1];
 }
 
 function saveFile() {
@@ -976,6 +1010,21 @@ function onBarrelMerge(isAuto, lvl, bx, by) {
     if (isAuto == false) {
         game.selfMerges += 1;
         game.mergesThisPrestige += 2;
+
+        if (game.darkMastery.isUnlocked() || game.supernova.stars.gt(0)) {
+            game.darkMastery.d[lvl % BARRELS] += 1;
+            if (calculateDarkMasteryLevel(game.darkMastery.d[lvl % BARRELS]) > game.darkMastery.dl[lvl % BARRELS]) {
+                game.darkMastery.dl[lvl % BARRELS] += 1;
+    
+                for (i = 1; i < 21; i++) {
+                    game.darkMastery.levels[i - 1] = calculateTotalLevelsDark(i);
+                }
+    
+                game.darkMastery.darkTokens = game.darkMastery.darkTokens.add(game.darkMastery.dl[lvl % BARRELS]);
+                game.stats.totaldarktokens = game.stats.totaldarktokens.add(game.darkMastery.dl[lvl % BARRELS]);
+                GameNotification.create(new TextNotification(tt("not_masteryup2").replace("<n>", game.darkMastery.dl[lvl % BARRELS]).replace("<amount>", game.darkMastery.dl[lvl % BARRELS]), tt("not_darkmasteryup"), "barrelm", ((lvl % BARRELS) + 1)));
+            }
+        }
 
         if (game.wrenches.isUnlocked()) {
             if (isMobile()) {
@@ -1906,6 +1955,13 @@ function loadGame(saveCode, isFromFile = false) {
             })
         }
 
+        if (loadObj.ewrench !== undefined) {
+            game.ewrench.amount = loadVal(new Decimal(loadObj.ewrench.amount), new Decimal(0));
+        }
+        else {
+            game.ewrench.amount = new Decimal(0);
+        }
+
 
         if (loadObj.factory !== undefined) {
             game.factory.time = loadVal(loadObj.factory.time, 0);
@@ -2037,6 +2093,27 @@ function loadGame(saveCode, isFromFile = false) {
             game.barrelMastery.bl = Array(1000).fill(0);
             game.barrelMastery.masteryTokens = new Decimal(0);
         }
+
+        //dark
+
+        if (loadObj.darkMastery !== undefined) {
+            game.darkMastery.d = loadObj.darkMastery.d;
+            game.darkMastery.dl = [];
+            for (i = 0; i < 1000; i++) {
+                game.darkMastery.dl.push(calculateDarkMasteryLevel(game.darkMastery.d[i]));
+            }
+            game.darkMastery.darkTokens = new Decimal(loadObj.darkMastery.darkTokens);
+            for (i = 1; i < 21; i++) {
+                game.darkMastery.levels[i - 1] = calculateTotalLevelsDark(i);
+            }
+        }
+        else {
+            game.barrelMastery.d = Array(1000).fill(0);
+            game.barrelMastery.dl = Array(1000).fill(0);
+            game.darkMastery.darkTokens = new Decimal(0);
+        }
+
+        //
 
         if (loadObj.plasticBags !== undefined) {
             game.plasticBags.amount = loadVal(new Decimal(loadObj.plasticBags.amount), new Decimal(0));

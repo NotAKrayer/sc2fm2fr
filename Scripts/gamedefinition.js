@@ -479,6 +479,8 @@ var game =
         abeamstp: new Decimal(0),
         rbeamstp: new Decimal(0),
         gbeamstp: new Decimal(0),
+        totalewrench: new Decimal(0),
+        totaldarktokens: new Decimal(0),
     },
     mergeQuests:
     {
@@ -1206,6 +1208,11 @@ var game =
                 }),
         }
     },
+    ewrench:
+    {
+        isUnlocked: () => game.solarSystem.upgrades.earth.level >= EarthLevels.EWRENCH,
+        amount: new Decimal(0),
+    },
     plasticBags:
     {
         amount: new Decimal(0),
@@ -1665,6 +1672,13 @@ var game =
                     getEffectDisplay: effectDisplayTemplates.numberStandard(4, "x", "^L10")
                 }),
         }
+    },
+    darkMastery: {
+        isUnlocked: () => applyUpgrade(game.skillTree.upgrades.unlockMastery),
+        d: Array(1000).fill(0), // All ya merges
+        dl: Array(1000).fill(0), // All ya levels
+        levels: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+        darkTokens: new Decimal(0),
     },
     shrine: {
         factoryUnlock: new SkillTreeUpgradeFixed([
@@ -2659,7 +2673,7 @@ var game =
                 new Milestone(221, "Duck Tales", 115, () => "Do at least 100k merges on all\nduck barrels (Progress: " + duckTales(1) + "/" + duckBarrels.length + ")\n" + duckTales(2), () => duckTales(), ["<text>", "duckTales(1)"]),
                 new Milestone(228, "Nuclear Fusion", 65, "Do 1M manual merges\n(Merges from auto merge do not count as manual merges)\nor 100M total merges", () => game.selfMerges >= 1e6 || game.totalMerges >= 1e8),
                 new Milestone(274, "Mastery of Mastery", 92, () => "Get ALL barrels to Mastery 10", () => getTotalLevels(10) >= BARRELS),
-                new Milestone(250, "The End?", 0, () => "Get Almost All Achievements", () => game.ms.length >= 274),
+                new Milestone(250, "The End?", 0, () => "Complete the main game", () => game.ms.length >= 274),
                 new Milestone(276, "Just the beginning", 120, () => "Unlock Electric Wrenches!", () => game.solarSystem.upgrades.earth.level >= EarthLevels.EWRENCH),
             ],
         highlighted: 0,
@@ -2794,4 +2808,5 @@ const unlocks = [
     new Unlock("Cogwheels", "Skill Tree", () => game.cogwheels.isUnlocked(), { deName: "Zahnräder", deDesc: "Baum", ruName: "Шестерёнки", ruDesc: "Дерево Навыков" }),
     new Unlock("Supernova", "Earth (1e500 GS)", () => game.solarSystem.upgrades.earth.level >= EarthLevels.UNLOCK_NOVA || game.supernova.stars.gte(1), { deName: "Supernova", deDesc: "Erde (1e500 GS)", ruName: "Суперновая", ruDesc: "Земля (1e500 ЗМ)" }),
     new Unlock("Cosmic Pins", "50 Stars", () => game.supernova.stars.gte(50), { deName: "Kosmische Pins", deDesc: "50 Sterne", ruName: "Космический Значок", ruDesc: "50 Звëзд" }),
+    new Unlock("Electric Wrenches", "Earth (1e1000 GS)", () => game.solarSystem.upgrades.earth.level >= EarthLevels.EWRENCH, { deName: "Elektrische Schraubenschlüssel", deDesc: "Erde (1e1000 GS)", ruName: "Электрические ключи", ruDesc: "Земля (1e1000 ЗМ)" }),
 ];

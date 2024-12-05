@@ -189,6 +189,7 @@ const trans_en = {
     not_timeover: "Time Over!",
     not_timeover2: "+<amount> cog wheels",
     not_masteryup: "Mastery level up!",
+    not_darkmasteryup: "Dark Mastery level up!",
     not_masteryup2: "Level <n>: +<amount>",
     not_storm: "No Storm! :(",
     not_storm2: "So unlucky",
@@ -207,6 +208,10 @@ const trans_en = {
     totalmerges: "Total Merges",
     selfmerges: "Manual Merges",
     mergeexplanation: "Manual merges -> Merges done by the player!",
+
+    //Electric Wrenches
+    ewrench: "Electric Wrenches",
+    ewrench1: "Coming Soon",
 
     // DAILY AND STATS
     daily: "Daily",

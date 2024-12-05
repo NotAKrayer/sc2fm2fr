@@ -207,6 +207,9 @@ const trans_de = {
     selfmerges: "Eigene Verbindungen",
     mergeexplanation: "Eigene Verbindungen -> Verbindungen vom Spieler selbst!\n(Kein Auto Merge)",
 
+    ewrench: "Elektrische Schlüssel",
+    ewrench1: "Скоро",
+
     // DAILY AND STATS
     daily: "Täglich",
     currenttime: "Zeit",
@@ -862,7 +865,7 @@ const trans_de = {
         "247": ["Segen von den Feen", "Habe 100.000 Feenstaub insgesamt"],
         "248": ["Nichtmal Aliens Können Es Fassen", "Erreiche <amount> Schrott\nStop... Schrottzeit!"],
         "249": ["Gelb", "Habe <amount> GS"],
-        "250": ["Das Ende", "Alle Erfolge"],
+        "250": ["Das Ende?", "Schließe das Hauptspiel ab"],
 
         "251": ["Untergang der Sterne", "Habe <amount> Sternenstaub insgesamt"],
         "252": ["Untergang der Aliens", "Habe <amount> Alienstaub insgesamt"],
@@ -889,5 +892,6 @@ const trans_de = {
         "273": ["Wolkenkratzer zur Sonne", "<amount> Ziegelsteine"],
         "274": ["Meistermeister", "ALLE Tonnen auf Mastery Level 10"],
         "275": ["Champion IV", "250 Erfolge"],
+        "276": ["Nur der Anfang", "Öffnen Sie die elektrischen Schlüssel"],
     }
 }

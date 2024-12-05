@@ -916,7 +916,17 @@ var scenes =
                     if (barrelsDisplayMode == 0) barrelsDisplayMode = 1;
                     else barrelsDisplayMode = 0;
                 }, { quadratic: true, isVisible: () => game.barrelMastery.isUnlocked() }),
+
+                //dark mastery staff
+                new UIButton(0.9, 0.15, 0.07, 0.07, images.darkmasterytoggle, () => {
+                        if (barrelsDisplayMode == 0) barrelsDisplayMode = 2;
+                        else barrelsDisplayMode = 0;
+                }, { quadratic: true, isVisible: () => game.barrelMastery.isUnlocked() }),
+
                 new UIButton(0.9, 0.05, 0.07, 0.07, images.masteryIcon, () => Scene.loadScene("Mastery"),
+                    { quadratic: true, isVisible: () => game.barrelMastery.isUnlocked() }),
+
+                new UIButton(0.75, 0.05, 0.07, 0.07, images.darkMasteryIcon, () => Scene.loadScene("Mastery"),
                     { quadratic: true, isVisible: () => game.barrelMastery.isUnlocked() }),
 
                 new UIButton(0.25, 0.15, 0.07, 0.07, images.upgrades.betterBarrels, function () {
@@ -998,10 +1008,13 @@ var scenes =
                     if (!drawPreview) {
                         // barrel tier OR mastery level
                         if (barrelsDisplayMode == 0) ctx.fillText("#" + (i + 1), x, y - h * 0.065, w * 0.15);
+                        else if (barrelsDisplayMode == 2) ctx.fillText(game.darkMastery.d[i % BARRELS], x, y - h * 0.065, w * 0.15);
                         else ctx.fillText(game.barrelMastery.b[i % BARRELS], x, y - h * 0.065, w * 0.15);
+
 
                         // production OR mastery merges
                         if (barrelsDisplayMode == 0) ctx.fillText(formatNumber(Barrel.getIncomeForLevel(i)), x, y + h * 0.06, w * 0.15);
+                        else if (barrelsDisplayMode == 2) ctx.fillText("L" + calculateDarkMasteryLevel(game.darkMastery.d[i % BARRELS]), x, y + h * 0.06, w * 0.15);
                         else ctx.fillText("L" + calculateMasteryLevel(game.barrelMastery.b[i % BARRELS]), x, y + h * 0.06, w * 0.15);
                     }
                 }
@@ -1174,7 +1187,11 @@ var scenes =
                 new UIButton(0.9, 0.9, 0.07, 0.07, images.zoomOut, () => Scene.loadScene("ThirdSolarSystem"), {
                     quadratic: true,
                     isVisible: () => game.solarSystem.upgrades.neptune.level > 4,
-                })
+                }),
+                new UIButton(0.9, 0.9, 0.07, 0.07, images.scenes.ewrench, () => Scene.loadScene("EWrench"), {
+                    quadratic: true,
+                    isVisible: () => game.ewrench.isUnlocked()
+                }),
             ],
             function () {
                 ctx.fillStyle = "black";
@@ -2250,6 +2267,28 @@ var scenes =
                 ctx.fillStyle = colors[C]["table"];
                 ctx.fillRect(w * 0.05, h * 0.188, w * 0.9, h * 0.06);
             }),
+        new Scene("EWrench",
+                [
+                    new UIText(() => tt("ewrench"), 0.5, 0.1, 0.08, "white", {
+                        bold: 900,
+                        borderSize: 0.005,
+                        font: fonts.title
+                    }),
+                    new UIButton(0.1, 0.05, 0.07, 0.07, images.buttonBack, () => Scene.loadScene("SolarSystem"), { quadratic: true }),
+    
+                    new UIText(() => "$images.ewrench$ " + tt("ewrench") + ": " + game.ewrench.amount.toFixed(0), 0.5, 0.2, 0.06, "yellow"),
+    
+                    //new UIText(() => "Total Scrap Boost: x" + formatNumber(game.wrenches.amount.pow(((1 + game.wrenches.upgrades.wrenchScrapBoost.level / 100) * (100 / (1 + Math.pow(2.71828, (-0.000003 * game.wrenches.amount))) - 50))) )/*.toFixed(1)*/, 0.5, 0.7, 0.03, "black"),
+                    new UIText(() => "$images.ewrench$ " + tt("ewrench1") + ": " + game.ewrench.amount.toFixed(0), 0.5, 0.7, 0.06, "yellow"),
+    
+                ],
+                function () {
+                    ctx.fillStyle = colors[C]["bg"];
+                    ctx.fillRect(0, 0, w, h);
+    
+                    ctx.fillStyle = colors[C]["table"];
+                    ctx.fillRect(w * 0.05, h * 0.188, w * 0.9, h * 0.06);
+                }),
         new Scene("Statistics",
             [
                 new UIText(() => tt("statistics"), 0.5, 0.05, 0.08, "white", {
@@ -2352,14 +2391,14 @@ var scenes =
                 }
                 else {
                     var compareIDs = [
-                        "totallegendaryscrap", "totalsteelmagnets", "totalbluebricks", "totalfishingnets", "totalbuckets", "totaltanks", "totalstardust", "totalaliendust", "totalfairydust", "totalcosmicemblems"
+                        "totallegendaryscrap", "totalsteelmagnets", "totalbluebricks", "totalfishingnets", "totalbuckets", "totaltanks", "totalstardust", "totalaliendust", "totalfairydust", "totalcosmicemblems", "totalewrench"
                     ];
-                    var compareNums = [game.stats.totallegendaryscrap, game.stats.totalsteelmagnets, game.stats.totalbluebricks, game.stats.totalfishingnets, game.stats.totalbuckets, game.stats.totaltanks, game.stats.totalstardust, game.stats.totalaliendust, game.stats.totalfairydust, game.stats.totalcosmicemblems];
+                    var compareNums = [game.stats.totallegendaryscrap, game.stats.totalsteelmagnets, game.stats.totalbluebricks, game.stats.totalfishingnets, game.stats.totalbuckets, game.stats.totaltanks, game.stats.totalstardust, game.stats.totalaliendust, game.stats.totalfairydust, game.stats.totalcosmicemblems, game.stats.totalewrench];
                     var textDisplays =
                         tto({
-                            default: ["Total Legendary Scrap", "Total Steel Magnets", "Total Blue Bricks", "Total Fishing Nets", "Total Buckets", "Total Tank Fills", "Total Star Dust", "Total Alien Dust", "Total Fairy Dust", "Total Cosmic Emblems"],
-                            de: ["Legendärer Schrott", "Stahlmagnete", "Blaue Ziegel", "Fischernetze", "Eimer", "Tankauffüllungen", "Sternenstaub", "Alienstaub", "Feenstaub", "Kosmische Embleme"],
-                            ru: ["Всего Легендарного Мусора", "Всего Стальных Магнитов", "Всего Голубых Кирпичей", "Всего Рыболовных Сетей", "Всего Вёдер", "Всего Заполнений Бака", "Всего Звёздной Пыли", "Всего Инопланетной Пыли", "Всего Волшебной Пыли", "Космические Эмблемы"],
+                            default: ["Total Legendary Scrap", "Total Steel Magnets", "Total Blue Bricks", "Total Fishing Nets", "Total Buckets", "Total Tank Fills", "Total Star Dust", "Total Alien Dust", "Total Fairy Dust", "Total Cosmic Emblems", "Total Electric Wrenches"],
+                            de: ["Legendärer Schrott", "Stahlmagnete", "Blaue Ziegel", "Fischernetze", "Eimer", "Tankauffüllungen", "Sternenstaub", "Alienstaub", "Feenstaub", "Kosmische Embleme", "Elektrischer Schraubenschlüssel"],
+                            ru: ["Всего Легендарного Мусора", "Всего Стальных Магнитов", "Всего Голубых Кирпичей", "Всего Рыболовных Сетей", "Всего Вёдер", "Всего Заполнений Бака", "Всего Звёздной Пыли", "Всего Инопланетной Пыли", "Всего Волшебной Пыли", "Космические Эмблемы", "Всего Электрических Ключей"],
                         });
                 }
 
@@ -2954,7 +2993,7 @@ var scenes =
                 ctx.fillRect(0, 0, w, h);
 
                 ctx.fillStyle = colors[C]["table"];
-                ctx.fillRect(w * 0.05, h * 0.1, w * 0.9, h * 0.7);
+                ctx.fillRect(w * 0.05, h * 0.1, w * 0.9, h * 0.8);
 
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";

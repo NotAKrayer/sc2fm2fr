@@ -83,6 +83,7 @@ var images =
     bucket: loadImage("Images/Currencies/bucket.png"),
     fishingNet: loadImage("Images/Currencies/fishingnet.png"),
     masteryIcon: loadImage("Images/mastery.png"),
+    darkMasteryIcon: loadImage("Images/darkmastery.png"),
     convertbutton: loadImage("Images/Buttons/convertbutton.png"),
     multibuybutton: loadImage("Images/Buttons/multibuybutton.png"),
     screw: loadImage("Images/Currencies/screw.png"),
@@ -102,12 +103,15 @@ var images =
     hyperbuyLevel: loadImage("Images/Buttons/hyperbuy_level.png"),
     hyperbuyPercent: loadImage("Images/Buttons/hyperbuy_percent.png"),
     masterytoggle: loadImage("Images/Buttons/masterytoggle.png"),
+    darkmasterytoggle: loadImage("Images/Buttons/darkmasterytoggle.png"),
     info: loadImage("Images/Buttons/button_info.png"),
     pins: loadImage("Images/pins.png"),
     alienPin: loadImage("Images/alienpin.png"),
     fairyPin: loadImage("Images/fairypin.png"),
     starPin: loadImage("Images/starpin.png"),
     grass: loadImage("Images/grass.png"),
+    ewrench: loadImage("Images/Currencies/ewrench.png"),
+    darkToken: loadImage("Images/Currencies/darktoken.png"),
     logos:
     {
         scrap2: loadImage("Images/scrap2logo.png"),
@@ -261,7 +265,8 @@ var images =
         fairydustupgrades: loadImage("Images/Scenes/fairydustupgrades.png"),
         cosmicupgrades: loadImage("Images/Scenes/cosmicupgrades.png"),
         unlocks: loadImage("Images/Scenes/unlocks.png"),
-        creditsformod: loadImage("Images/Scenes/creditsformod.png")
+        creditsformod: loadImage("Images/Scenes/creditsformod.png"),
+        ewrench: loadImage("Images/Scenes/ewrench.png")
     },
     solarSystem:
     {

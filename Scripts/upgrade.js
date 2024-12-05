@@ -26,7 +26,9 @@ let RESOURCE_SCRAP = 0,
     RESOURCE_COSMICEMBLEMS = 25,
     RESOURCE_STARDUST = 26,
     RESOURCE_ALIENDUST = 27,
-    RESOURCE_FAIRYDUST = 28;
+    RESOURCE_FAIRYDUST = 28,
+    RESOURCE_EWRENCH = 29,
+    RESOURCE_DARKTOKEN = 30;
 
 function applyUpgrade(upg) {
     return upg.getEffect(upg.level);
@@ -92,6 +94,10 @@ function getUpgradeResource(res) {
             return game.supernova.alienDust;
         case RESOURCE_FAIRYDUST:
             return game.supernova.fairyDust;
+        case RESOURCE_EWRENCH:
+            return game.ewrench.amount;
+        case RESOURCE_DARKTOKEN:
+            return game.darkMastery.darkTokens;
         default:
             return null;
     }
@@ -135,6 +141,9 @@ function assignResourceAfterUpgrade(resType, res) {
         case RESOURCE_WRENCH:
             game.wrenches.amount = res;
             break;
+        case RESOURCE_EWRENCH:
+            game.ewrench.amount = res;
+            break;
         case RESOURCE_ANGELBEAM:
             game.angelbeams.amount = res;
             break;
@@ -155,6 +164,9 @@ function assignResourceAfterUpgrade(resType, res) {
             break;
         case RESOURCE_MASTERYTOKEN:
             game.barrelMastery.masteryTokens = res;
+            break;
+        case RESOURCE_DARKTOKEN:
+            game.darkMastery.darkTokens = res;
             break;
         case RESOURCE_PLASTICBAG:
             game.plasticBags.amount = res;
@@ -216,6 +228,8 @@ function getResourceImage(res) {
             return "$images.aerobeam$";
         case RESOURCE_WRENCH:
             return "$images.wrench$";
+        case RESOURCE_EWRENCH:
+            return "$images.ewrench$";
         case RESOURCE_ANGELBEAM:
             return "$images.angelbeam$";
         case RESOURCE_REINFORCEDBEAM:
@@ -230,6 +244,8 @@ function getResourceImage(res) {
             return "$images.blueBrick$";
         case RESOURCE_MASTERYTOKEN:
             return "$images.masteryToken$";
+        case RESOURCE_DARKTOKEN:
+            return "$images.darkTokens$";
         case RESOURCE_PLASTICBAG:
             return "$images.plasticBag$";
         case RESOURCE_BUCKET:
@@ -708,6 +724,12 @@ class WrenchUpgrade extends ScrapUpgrade {
         this.resource = RESOURCE_WRENCH;
     }
 }
+class EWrenchUpgrade extends ScrapUpgrade {
+    constructor(getPrice, getEffect, cfg) {
+        super(getPrice, getEffect, cfg);
+        this.resource = RESOURCE_EWRENCH;
+    }
+}
 class AngelBeamUpgrade extends ScrapUpgrade {
     constructor(getPrice, getEffect, cfg) {
         super(getPrice, getEffect, cfg);
@@ -830,6 +852,13 @@ class MasteryTokenUpgrade extends ScrapUpgrade {
     constructor(getPrice, getEffect, cfg) {
         super(getPrice, getEffect, cfg);
         this.resource = RESOURCE_MASTERYTOKEN;
+    }
+}
+
+class DarkMasteryTokenUpgrade extends ScrapUpgrade {
+    constructor(getPrice, getEffect, cfg) {
+        super(getPrice, getEffect, cfg);
+        this.resource = RESOURCE_DARKTOKEN;
     }
 }
 class CogwheelUpgrade extends ScrapUpgrade {
