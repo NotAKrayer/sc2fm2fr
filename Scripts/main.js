@@ -1007,6 +1007,14 @@ function onBarrelMerge(isAuto, lvl, bx, by) {
             GameNotification.create(new TextNotification(tt("not_masteryup2").replace("<n>", game.barrelMastery.bl[lvl % BARRELS]).replace("<amount>", game.barrelMastery.bl[lvl % BARRELS]), tt("not_masteryup"), "barrelm", ((lvl % BARRELS) + 1)));
         }
     }
+
+    if (isAuto == true) {
+        if (game.ewrench.isUnlocked()) {
+                game.ewrench.amount = game.ewrench.amount.add(1);
+                game.stats.totalewrench = game.stats.totalewrench.add(1);
+        }
+    }
+
     if (isAuto == false) {
         game.selfMerges += 1;
         game.mergesThisPrestige += 2;

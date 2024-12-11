@@ -593,6 +593,18 @@ var scenes =
                                 ctx.fillText(game.mergeQuests.quests[upgradingType].currentMerges + "/" + game.mergeQuests.quests[upgradingType].getNeededMerges(), 0.01, 0.64 * h + barrelSize / 2);
                             }
                         }
+
+                        if (game.darkMastery.isUnlocked()) {
+                            Barrel.renderBarrel(ctx, upgradingBarrel, 0.04 * w, 0.55 * h, barrelSize / 2);
+
+                            ctx.fillStyle = colors[C]["text"];
+                            ctx.textAlign = "left";
+                            ctx.font = (h * 0.015) + "px " + fonts.default;
+                            if (upgradingType == "mas") {
+                                ctx.fillText(game.darkMastery.d[upgradingBarrel % BARRELS], 0.01, 0.54 * h + barrelSize / 2);
+                            }
+
+                        }
                     }
                 }
 
@@ -921,13 +933,13 @@ var scenes =
                 new UIButton(0.9, 0.15, 0.07, 0.07, images.darkmasterytoggle, () => {
                         if (barrelsDisplayMode == 0) barrelsDisplayMode = 2;
                         else barrelsDisplayMode = 0;
-                }, { quadratic: true, isVisible: () => game.barrelMastery.isUnlocked() }),
+                }, { quadratic: true, isVisible: () => game.darkMastery.isUnlocked() }),
 
                 new UIButton(0.9, 0.05, 0.07, 0.07, images.masteryIcon, () => Scene.loadScene("Mastery"),
                     { quadratic: true, isVisible: () => game.barrelMastery.isUnlocked() }),
 
                 new UIButton(0.75, 0.05, 0.07, 0.07, images.darkMasteryIcon, () => Scene.loadScene("Mastery"),
-                    { quadratic: true, isVisible: () => game.barrelMastery.isUnlocked() }),
+                    { quadratic: true, isVisible: () => game.darkMastery.isUnlocked() }),
 
                 new UIButton(0.25, 0.15, 0.07, 0.07, images.upgrades.betterBarrels, function () {
                     game.scrapUpgrades.betterBarrels.buy();
@@ -2276,10 +2288,13 @@ var scenes =
                     }),
                     new UIButton(0.1, 0.05, 0.07, 0.07, images.buttonBack, () => Scene.loadScene("SolarSystem"), { quadratic: true }),
     
+                    new UIEWrenchUpgrade(game.ewrench.upgrades.ewrenchTiresBoost, images.upgrades.tireBoost, 0.65, "ewrench1"),
+
                     new UIText(() => "$images.ewrench$ " + tt("ewrench") + ": " + game.ewrench.amount.toFixed(0), 0.5, 0.2, 0.06, "yellow"),
     
                     //new UIText(() => "Total Scrap Boost: x" + formatNumber(game.wrenches.amount.pow(((1 + game.wrenches.upgrades.wrenchScrapBoost.level / 100) * (100 / (1 + Math.pow(2.71828, (-0.000003 * game.wrenches.amount))) - 50))) )/*.toFixed(1)*/, 0.5, 0.7, 0.03, "black"),
                     new UIText(() => "$images.ewrench$ " + tt("ewrench1") + ": " + game.ewrench.amount.toFixed(0), 0.5, 0.7, 0.06, "yellow"),
+                    new UIText(() => tt("emergeexplanation"), 0.5, 0.9, 0.03, "black"),
     
                 ],
                 function () {
@@ -3251,6 +3266,8 @@ var scenes =
                     new UISkillTreePath(0.5, 3.65, 0.2, 3.95, 0.01, "skillTreePath", game.skillTree.upgrades.unlockMastery && game.skillTree.upgrades.speedBoostsFragments),
                     new UISkillTreePath(0.5, 3.65, 0.8, 3.95, 0.01, "skillTreePath", game.skillTree.upgrades.unlockMastery && game.skillTree.upgrades.speedBoostsFragments),
 
+                    new UISkillTreePath(0.5, 3.65, 0.5, 3.95, 0.01, "skillTreePath2", game.skillTree.upgrades.unlockMastery),
+
                     new UISkillTreePath(0.2, 3.95, 0.2, 4.25, 0.01, "skillTreePath", game.skillTree.upgrades.efficientEnergy),
                     new UISkillTreePath(0.8, 3.95, 0.8, 4.25, 0.01, "skillTreePath", game.skillTree.upgrades.fourthMaxLevel),
 
@@ -3318,6 +3335,7 @@ var scenes =
                     new UISkillTreeUpgrade(game.skillTree.upgrades.speedBoostsFragments, images.upgrades.moreFragments, "tree19", 0.5, 3.35),
 
                     new UISkillTreeUpgrade(game.skillTree.upgrades.unlockMastery, images.upgrades.unlockMastery, "tree20", 0.5, 3.65, "table2"),
+                    new UISkillTreeUpgrade(game.skillTree.upgrades.unlockDarkMastery, images.upgrades.unlockMastery, "trees20", 0.5, 3.95),
 
                     new UISkillTreeUpgrade(game.skillTree.upgrades.efficientEnergy, images.upgrades.efficientenergy, "tree21", 0.2, 3.95),
                     new UISkillTreeUpgrade(game.skillTree.upgrades.fourthMaxLevel, images.upgrades.fourthUpgrades, "tree22", 0.8, 3.95),

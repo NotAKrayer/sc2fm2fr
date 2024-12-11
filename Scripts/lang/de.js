@@ -84,7 +84,6 @@ const trans_de = {
     "cp2": "Mod von VeproGames Scrap 2 Fanmade ©2019",
     "cp3": "Mod SC2FMFR gemacht von Schrottii ©2021",
     "cp4": "Das modden dieser Mod ohne Erlaubnis ist untersagt!",
-    "cp4.5": " Mod SC2FM^2FR gemacht von KirillMatter",
     "credit": "Danke an alle Tonnenersteller, Vorschlägemacher,\nFehlerfinder, Betatester und wer auch immer\ndie Kokosnuss gemacht hat",
     "thanks": "Besonderen Dank an elmenda452, DaGame,\nЛюбитель Майнкрафта, DoorHandleSalesMan und MCGamer3005",
     "Libraries used": "Libraries benutzt",
@@ -206,9 +205,6 @@ const trans_de = {
     totalmerges: "Verbindungen insgesamt",
     selfmerges: "Eigene Verbindungen",
     mergeexplanation: "Eigene Verbindungen -> Verbindungen vom Spieler selbst!\n(Kein Auto Merge)",
-
-    ewrench: "Elektrische Schlüssel",
-    ewrench1: "Скоро",
 
     // DAILY AND STATS
     daily: "Täglich",
@@ -465,7 +461,6 @@ const trans_de = {
     wrench2: "x16 Ziegelfortschritt\nvon eigenen Verbindungen",
     wrench3: "Mehr Schrott\n(Basierend auf Schraubenschl.)",
     wrench4: "Reduziert den Stahl-Timer\num 0.25s jede eigene Verbindung",
-    wrench5: "+1x zu Schraubenschlüsselgewinn",
 
     // Shrine
     shrine1: "Schalte den Generator frei",
@@ -893,5 +888,17 @@ const trans_de = {
         "274": ["Meistermeister", "ALLE Tonnen auf Mastery Level 10"],
         "275": ["Champion IV", "250 Erfolge"],
         "276": ["Nur der Anfang", "Öffnen Sie die elektrischen Schlüssel"],
-    }
+        "277": ["Почему оно тёмное?", "Откройте тёмное мастерство"],
+    },
+
+    //mod stuff
+
+    "cp4.5": " Mod SC2FM^2FR created by KirillMatter",
+
+    //Electric Wrenches
+    ewrench: "Electric Wrenches",
+    ewrench1: "Tire Boost\n(Based on Electric Wrenches)",
+    emergeexplanation: "Auto merges -> Merges done by Auto",
+    trees20: "Unlock\nDark Mastery",
+    wrench5: "+1x to Wrenches gain",
 }

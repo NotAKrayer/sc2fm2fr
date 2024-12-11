@@ -719,7 +719,7 @@ var game =
                 [ //more xTires per collect, Tire chance, faster Merge Quests
                     new TireUpgrade(level => Decimal.pow(32, Math.pow(level / 2 + game.tires.getCombinedRowLevel(game.tires.upgrades[1]) / 2, 1.15) + game.tires.getLevelBias(level))
                         .mul(10e63),
-                        level => new Decimal(1.3 + 0.05 * level + 0.01 * Math.pow(Math.max(level - 70, 0), 2)).mul(1 + game.skillTree.upgrades.tireValue.level).mul(applyUpgrade(game.aerobeams.upgrades.moreTires)).mul(applyUpgrade(game.plasticBags.upgrades.moreTires)).pow(applyUpgrade(game.skillTree.upgrades.tireBoost)).pow(applyUpgrade(game.skillTree.upgrades.tireBoost2)).pow(applyUpgrade(game.supernova.starDustUpgrades.corvus)).mul(applyUpgrade(game.barrelMastery.upgrades.tireBoost).pow(getTotalLevels(8))),
+                        level => new Decimal(1.3 + 0.05 * level + 0.01 * Math.pow(Math.max(level - 70, 0), 2)).mul(1 + game.skillTree.upgrades.tireValue.level).mul(applyUpgrade(game.aerobeams.upgrades.moreTires)).mul(applyUpgrade(game.plasticBags.upgrades.moreTires)).pow(applyUpgrade(game.skillTree.upgrades.tireBoost)).pow(applyUpgrade(game.skillTree.upgrades.tireBoost2)).pow(applyUpgrade(game.supernova.starDustUpgrades.corvus)).mul(applyUpgrade(game.barrelMastery.upgrades.tireBoost).mul(applyUpgrade(game.ewrench.upgrades.ewrenchTiresBoost)).pow(getTotalLevels(8))),
                         {
                             getEffectDisplay: effectDisplayTemplates.numberStandard(2),
                             integral: level => new Decimal(20).mul(new Decimal(10).pow(63)).mul(new Decimal(32).pow((level / 2) + game.tires.getLevelBias(level) + ((game.tires.getCombinedRowLevel(game.tires.upgrades[1]) * (23 / 20)) / (2 * (23 / 20))))).div(Math.log(32)),
@@ -1212,6 +1212,16 @@ var game =
     {
         isUnlocked: () => game.solarSystem.upgrades.earth.level >= EarthLevels.EWRENCH,
         amount: new Decimal(0),
+
+        upgrades: {
+            ewrenchTiresBoost: new EWrenchUpgrade(
+                level => new Decimal(10 * (1 + Math.round(level / 2))),
+                level => new Decimal(Math.max(game.ewrench.amount, 1)).pow(((level / 500) * (100 / (1 + Math.pow(2.71828, (-0.000003 * game.tires.amount))) - 50))),
+                {
+                    maxLevel: 100,
+                    getEffectDisplay: effectDisplayTemplates.numberStandard(3, "x")
+                }),
+        }
     },
     plasticBags:
     {
@@ -1419,6 +1429,12 @@ var game =
             ], [false, true], {
                 getEffectDisplay: effectDisplayTemplates.unlock()
             }, ["speedBoostsFragments"]),
+
+            unlockDarkMastery: new SkillTreeUpgradeFixed([
+                [[new Decimal(1.50e4), RESOURCE_WRENCH], [new Decimal(1300), RESOURCE_BARREL], [new Decimal(400), RESOURCE_REINFORCEDBEAM]],
+            ], [false, true], {
+                getEffectDisplay: effectDisplayTemplates.unlock()
+            }, ["unlockMastery"]),
 
             efficientEnergy: new SkillTreeUpgradeFixed([
                 [[new Decimal(2000), RESOURCE_REINFORCEDBEAM], [new Decimal(10000), RESOURCE_MERGE_TOKEN]],
@@ -1674,7 +1690,7 @@ var game =
         }
     },
     darkMastery: {
-        isUnlocked: () => applyUpgrade(game.skillTree.upgrades.unlockMastery),
+        isUnlocked: () => applyUpgrade(game.skillTree.upgrades.unlockDarkMastery),
         d: Array(1000).fill(0), // All ya merges
         dl: Array(1000).fill(0), // All ya levels
         levels: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
@@ -2675,6 +2691,7 @@ var game =
                 new Milestone(274, "Mastery of Mastery", 92, () => "Get ALL barrels to Mastery 10", () => getTotalLevels(10) >= BARRELS),
                 new Milestone(250, "The End?", 0, () => "Complete the main game", () => game.ms.length >= 274),
                 new Milestone(276, "Just the beginning", 120, () => "Unlock Electric Wrenches!", () => game.solarSystem.upgrades.earth.level >= EarthLevels.EWRENCH),
+                new Milestone(277, "Why its dark?", 120, () => "Unlock Dark Mastery", () => game.darkMastery.isUnlocked()),
             ],
         highlighted: 0,
         tooltip: null,
@@ -2809,4 +2826,5 @@ const unlocks = [
     new Unlock("Supernova", "Earth (1e500 GS)", () => game.solarSystem.upgrades.earth.level >= EarthLevels.UNLOCK_NOVA || game.supernova.stars.gte(1), { deName: "Supernova", deDesc: "Erde (1e500 GS)", ruName: "Суперновая", ruDesc: "Земля (1e500 ЗМ)" }),
     new Unlock("Cosmic Pins", "50 Stars", () => game.supernova.stars.gte(50), { deName: "Kosmische Pins", deDesc: "50 Sterne", ruName: "Космический Значок", ruDesc: "50 Звëзд" }),
     new Unlock("Electric Wrenches", "Earth (1e1000 GS)", () => game.solarSystem.upgrades.earth.level >= EarthLevels.EWRENCH, { deName: "Elektrische Schraubenschlüssel", deDesc: "Erde (1e1000 GS)", ruName: "Электрические ключи", ruDesc: "Земля (1e1000 ЗМ)" }),
+    new Unlock("Dark Mastery", "Skill Tree", () => game.darkMastery.isUnlocked(), { deName: "dunkle Meisterschaft", deDesc: "Baum", ruName: "Тёмное Мастерство", ruDesc: "Дерево Навыков" }),
 ];

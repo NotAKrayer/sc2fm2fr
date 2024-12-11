@@ -84,7 +84,6 @@ const trans_en = {
     "cp2": "Mod of VeproGames' Scrap 2 Fanmade ©2019",
     "cp3": "Mod SC2FMFR created by Schrottii ©2021",
     "cp4": "Unauthorized mods of this mod are prohibited!",
-    "cp4.5": " Mod SC2FM^2FR created by KirillMatter",
     "credit": "Credit to all barrel makers, idea givers, bug finders,\nbeta testers and whoever made the coconut image",
     "thanks": "Special thanks to elmenda452, DaGame,\nЛюбитель Майнкрафта, DoorHandleSalesMan\nand MCGamer3005",
     "Libraries used": "Libraries used",
@@ -208,10 +207,6 @@ const trans_en = {
     totalmerges: "Total Merges",
     selfmerges: "Manual Merges",
     mergeexplanation: "Manual merges -> Merges done by the player!",
-
-    //Electric Wrenches
-    ewrench: "Electric Wrenches",
-    ewrench1: "Coming Soon",
 
     // DAILY AND STATS
     daily: "Daily",
@@ -467,7 +462,6 @@ const trans_en = {
     wrench2: "x16 brick progress\nfrom manual merges",
     wrench3: "Scrap Boost\n(Based on wrenches)",
     wrench4: "Reduce the beam timer\nby 0.25s every manual merge",
-    wrench5: "+1x to Wrenches gain",
 
     // Shrine
     shrine1: "Unlock the generator building",
@@ -607,4 +601,17 @@ const trans_en = {
     screwgain1: "Screws from level ups",
     screwgain2: "Screws from tires",
     screwgain3: "Screws from falling screws",
+
+
+    //mod stuff
+
+    "cp4.5": " Mod SC2FM^2FR created by KirillMatter",
+
+    //Electric Wrenches
+    ewrench: "Electric Wrenches",
+    ewrench1: "Tire Boost\n(Based on Electric Wrenches)",
+    emergeexplanation: "Auto merges -> Merges done by Auto",
+    trees20: "Unlock\nDark Mastery",
+    wrench5: "+1x to Wrenches gain"
+
 }
